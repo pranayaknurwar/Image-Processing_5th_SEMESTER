@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Processing Lab | Pranay Aknurwar</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://docs.opencv.org/4.x/opencv.js"></script>
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <div class="brand">Image Processing Lab</div>
+    <div class="subtitle">Practical Experiment Dashboard</div>
+  </div>
+  <div class="student-card">
+    <strong>Pranay Aknurwar</strong>
+    <span>Computer Science & Engineering • Year 3</span>
+    <span>Roll No. CS24099 • Image Processing Lab</span>
+  </div>
+</header>
+
+<div class="app">
+  <aside class="sidebar">
+    <div class="upload-box">
+      <label class="upload-btn">Choose Image
+        <input id="imageInput" type="file" accept="image/*">
+      </label>
+      <button id="loadSample" class="secondary">Use Sample Image</button>
+      <div id="fileName" class="small">No image selected</div>
+    </div>
+    <nav id="tabs">
+      <button class="tab active" data-tab="p1">01 · Prelab / Setup</button>
+      <button class="tab" data-tab="p2">02 · RGB, Grayscale & Operations</button>
+      <button class="tab" data-tab="p3">03 · Geometric Transformations</button>
+      <button class="tab" data-tab="p4">04 · Enhancement</button>
+      <button class="tab" data-tab="p5">05 · Spatial Filters</button>
+      <button class="tab" data-tab="p6">06 · Image Inpainting</button>
+      <button class="tab" data-tab="p7">07 · Lossless Compression</button>
+      <button class="tab" data-tab="p8">08 · Morphological Operations</button>
+      <button class="tab" data-tab="p9">09 · Correlation Object Detection</button>
+      <button class="tab" data-tab="p10">10 · Colour Spaces</button>
+      <button class="tab" data-tab="p11">11 · Edge Detection</button>
+    </nav>
+  </aside>
+
+  <main class="content">
+    <section id="p1" class="panel active">
+      <h1>Prelab: Python & Development Environment</h1>
+      <p class="aim">Aim: Introduction to Python and setup of the development environment and libraries for image processing.</p>
+      <div class="cards">
+        <div class="info"><h3>Recommended tools</h3><ul><li>Python</li><li>PyCharm / Jupyter</li><li>OpenCV</li><li>NumPy</li><li>pandas</li><li>Scikit-learn</li><li>Matplotlib</li></ul></div>
+        <div class="info"><h3>Browser lab</h3><p>This website provides an interactive browser implementation of the image-processing experiments. Upload an image once, then switch tabs to perform the practicals.</p><p class="note">The uploaded image stays in your browser session and is not sent to this website.</p></div>
+      </div>
+      <pre class="code"># Python setup
+pip install opencv-python numpy pandas scikit-learn matplotlib
+
+# Test
+import cv2, numpy, pandas, sklearn, matplotlib
+print("Image processing environment ready")</pre>
+    </section>
+
+    <section id="p2" class="panel">
+      <h1>RGB, Grayscale, Arithmetic & Bitwise Operations</h1>
+      <p class="aim">Aim: Convert images between RGB and grayscale, perform arithmetic and bitwise operations, and observe changes in image data.</p>
+      <div class="controls">
+        <button data-op="gray">Grayscale</button><button data-op="rgb">RGB</button>
+        <button data-op="add">Brightness +</button><button data-op="subtract">Brightness −</button>
+        <button data-op="and">Bitwise AND</button><button data-op="or">Bitwise OR</button>
+        <button data-op="xor">Bitwise XOR</button><button data-op="not">Bitwise NOT</button>
+      </div>
+      <div id="p2out" class="result-grid"></div>
+    </section>
+
+    <section id="p3" class="panel">
+      <h1>2-D Geometric Transformations</h1>
+      <p class="aim">Aim: Implement translation, rotation, scaling, shearing, reflection and cropping.</p>
+      <div class="controls">
+        <label>Translate X <input id="tx" type="range" min="-200" max="200" value="50"><output for="tx">50</output></label>
+        <label>Translate Y <input id="ty" type="range" min="-200" max="200" value="30"><output for="ty">30</output></label>
+        <label>Rotation <input id="angle" type="range" min="-180" max="180" value="30"><output for="angle">30°</output></label>
+        <label>Scale <input id="scale" type="range" min="50" max="200" value="120"><output for="scale">120%</output></label>
+        <label>Shear X <input id="shear" type="range" min="-50" max="50" value="15"><output for="shear">15</output></label>
+        <button data-transform="translate">Translation</button><button data-transform="rotate">Rotation</button>
+        <button data-transform="scale">Scaling</button><button data-transform="shear">Shearing</button>
+        <button data-transform="reflect">Reflection</button><button data-transform="crop">Cropping</button>
+      </div>
+      <div id="p3out" class="result-grid"></div>
+    </section>
+
+    <section id="p4" class="panel">
+      <h1>Image Enhancement in Spatial Domain</h1>
+      <p class="aim">Aim: Study histogram equalization, smoothing, sharpening and thresholding for enhancement and segmentation.</p>
+      <div class="controls">
+        <button data-enhance="hist">Histogram Equalization</button>
+        <button data-enhance="smooth">Smoothing</button>
+        <button data-enhance="sharp">Sharpening</button>
+        <label>Threshold <input id="threshold" type="range" min="0" max="255" value="128"><output for="threshold">128</output></label>
+        <button data-enhance="threshold">Thresholding</button>
+      </div>
+      <div id="p4out" class="result-grid"></div>
+    </section>
+
+    <section id="p5" class="panel">
+      <h1>Spatial Domain Filters</h1>
+      <p class="aim">Aim: Apply averaging, Gaussian, median and bilateral filters to a given image.</p>
+      <div class="controls">
+        <label>Kernel <select id="kernel"><option>3</option><option>5</option><option>7</option></select></label>
+        <button data-filter="average">Averaging</button><button data-filter="gaussian">Gaussian</button>
+        <button data-filter="median">Median</button><button data-filter="bilateral">Bilateral</button>
+      </div>
+      <div id="p5out" class="result-grid"></div>
+    </section>
+
+    <section id="p6" class="panel">
+      <h1>Image Inpainting</h1>
+      <p class="aim">Aim: Remove damaged parts using Telea and Navier–Stokes (NS) inpainting methods.</p>
+      <p class="instruction">Use the brush on the image to mark the damaged area, then choose a method.</p>
+      <div class="controls"><label>Brush <input id="brush" type="range" min="3" max="40" value="12"><output for="brush">12</output></label><button id="clearMask">Clear Mark</button><button data-inpaint="telea">Telea</button><button data-inpaint="ns">Navier–Stokes</button></div>
+      <div class="canvas-wrap"><canvas id="maskCanvas"></canvas></div>
+      <div id="p6out" class="result-grid"></div>
+    </section>
+
+    <section id="p7" class="panel">
+      <h1>Lossless Compression</h1>
+      <p class="aim">Aim: Implement a lossless coding technique and compare original and compressed file sizes.</p>
+      <p class="instruction">This browser practical demonstrates Run-Length Encoding (RLE), a lossless coding technique. The compressed size shown is the RLE stream size estimate, not a replacement for PNG/JPEG file size.</p>
+      <div class="controls"><button id="compress">Run RLE Compression</button></div>
+      <div id="compressionStats" class="stats"></div>
+      <pre id="rlePreview" class="code"></pre>
+    </section>
+
+    <section id="p8" class="panel">
+      <h1>Morphological Operations</h1>
+      <p class="aim">Aim: Perform erosion, dilation, opening and closing on binary images to study object shape and noise removal.</p>
+      <div class="controls"><label>Kernel <select id="morphKernel"><option>3</option><option>5</option><option>7</option></select></label>
+      <button data-morph="erode">Erosion</button><button data-morph="dilate">Dilation</button><button data-morph="open">Opening</button><button data-morph="close">Closing</button></div>
+      <div id="p8out" class="result-grid"></div>
+    </section>
+
+    <section id="p9" class="panel">
+      <h1>Object Detection Using Correlation</h1>
+      <p class="aim">Aim: Develop a program to detect an object using the correlation principle.</p>
+      <p class="instruction">Upload a scene image, then optionally select a template image. Correlation is implemented as normalized template matching using OpenCV.js.</p>
+      <div class="controls"><label class="upload-btn">Choose Template <input id="templateInput" type="file" accept="image/*"></label><button id="detect">Detect by Correlation</button></div>
+      <div id="templateName" class="small">No template selected</div>
+      <div id="p9out" class="result-grid"></div>
+    </section>
+
+    <section id="p10" class="panel">
+      <h1>RGB, HSV, YCrCb & Lab Colour Spaces</h1>
+      <p class="aim">Aim: Convert images between RGB, HSV, YCrCb and Lab colour spaces and analyze colour encoding.</p>
+      <div class="controls"><button data-color="rgb">RGB</button><button data-color="hsv">HSV</button><button data-color="ycrcb">YCrCb</button><button data-color="lab">Lab</button></div>
+      <div id="p10out" class="result-grid"></div>
+    </section>
+
+    <section id="p11" class="panel">
+      <h1>Edge Detection: Canny, Sobel & Prewitt</h1>
+      <p class="aim">Aim: Detect edges using Canny and compare the results with Sobel and Prewitt detectors.</p>
+      <div class="controls"><label>Canny low <input id="cannyLow" type="range" min="0" max="200" value="50"><output for="cannyLow">50</output></label><label>Canny high <input id="cannyHigh" type="range" min="50" max="300" value="150"><output for="cannyHigh">150</output></label><button data-edge="canny">Canny</button><button data-edge="sobel">Sobel</button><button data-edge="prewitt">Prewitt</button></div>
+      <div id="p11out" class="result-grid"></div>
+    </section>
+  </main>
+</div>
+<script src="api.js"></script><script src="app.js"></script>
+</body>
+</html>

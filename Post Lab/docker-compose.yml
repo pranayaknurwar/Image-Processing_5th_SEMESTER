@@ -1,0 +1,21 @@
+services:
+  db:
+    image: postgres:16
+    container_name: image-processing-db
+    environment:
+      POSTGRES_DB: image_processing_lab
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports: ["5432:5432"]
+    volumes: [pgdata:/var/lib/postgresql/data]
+  backend:
+    build: ./backend
+    container_name: image-processing-backend
+    depends_on: [db]
+    environment:
+      DATABASE_URL: jdbc:postgresql://db:5432/image_processing_lab
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+    ports: ["8080:8080"]
+volumes:
+  pgdata:
