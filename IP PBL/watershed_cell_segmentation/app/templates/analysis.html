@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-head"><p class="eyebrow">03 / ANALYSIS</p><h1>Kernel Size Experiment</h1><p>Upload one image to calculate the effect of 3×3, 5×5, 7×7 and 9×9 median kernels.</p></div>
+<form id="kernelForm" class="card upload-row"><input type="file" name="image" accept=".jpg,.jpeg,.png,.bmp" required><button class="btn">Run Experiment</button></form>
+<div id="kernelStatus"></div><div class="chart-wrap card"><canvas id="kernelChart"></canvas></div><div class="card table-wrap"><table><thead><tr><th>Kernel</th><th>PSNR (dB)</th><th>MSE</th><th>SSIM</th><th>Cells</th></tr></thead><tbody id="kernelBody"></tbody></table></div>
+{% endblock %}

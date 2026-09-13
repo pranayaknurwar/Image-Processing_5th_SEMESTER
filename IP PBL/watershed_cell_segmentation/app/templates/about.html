@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-head"><p class="eyebrow">04 / ABOUT</p><h1>Project Methodology</h1></div>
+<div class="grid two"><article class="card"><h2>Core pipeline</h2><p>Grayscale conversion, noise handling, mean/Gaussian/median filtering, thresholding, morphology, distance transform, marker generation and watershed segmentation.</p><h3>Why watershed?</h3><p>Simple thresholding can merge touching cells. Watershed uses marker-controlled regions to split connected objects.</p></article>
+<article class="card"><h2>Metrics</h2><p><b>MSE</b> measures squared image error. <b>PSNR</b> reports image fidelity in dB. <b>SSIM</b> measures structural similarity.</p><p>When a ground-truth mask exists, <b>IoU, Dice, Precision, Recall, F1 and Accuracy</b> are more directly meaningful for segmentation quality.</p></article></div>
+{% endblock %}

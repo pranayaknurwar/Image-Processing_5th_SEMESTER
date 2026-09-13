@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-head"><p class="eyebrow">02 / SEGMENTATION</p><h1>Watershed Stages</h1><p>Run processing first, then inspect how markers and the watershed boundary are produced.</p></div>
+<div class="card instruction"><h3>How it works</h3><p>Distance transform finds cell centers. Sure foreground and background markers seed the watershed. The watershed then draws boundaries between neighboring regions.</p><a class="btn small" href="/processing">Open Processing Lab</a></div>
+<div class="pipeline"><span>Distance Transform</span><i>→</i><span>Local Peaks</span><i>→</i><span>Markers</span><i>→</i><span>Watershed</span><i>→</i><span>Cells</span></div>
+{% endblock %}

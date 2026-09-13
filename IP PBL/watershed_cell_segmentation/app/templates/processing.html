@@ -1,0 +1,14 @@
+{% extends "base.html" %}{% block content %}
+<div class="page-head"><p class="eyebrow">01 / PROCESSING</p><h1>Image Processing Lab</h1><p>Upload a microscopic image and tune the preprocessing pipeline.</p></div>
+<section class="workspace"><form id="processForm" class="controls">
+<label>Cell image<input type="file" name="image" accept=".jpg,.jpeg,.png,.bmp" required></label>
+<label>Noise<select name="noise"><option value="none">None</option><option value="gaussian">Gaussian</option><option value="salt_pepper">Salt-and-Pepper</option></select></label>
+<label>Filter<select name="filter"><option value="median">Median</option><option value="mean">Mean</option><option value="gaussian">Gaussian</option></select></label>
+<label>Kernel size<select name="kernel"><option>3</option><option>5</option><option>7</option><option>9</option></select></label>
+<label>Threshold<select name="threshold"><option value="otsu">Automatic (Otsu)</option><option value="fixed">Fixed (127)</option></select></label>
+<label>Morphology<select name="morph"><option value="opening">Opening</option><option value="closing">Closing</option></select></label>
+<button class="btn" type="submit">Process Image</button><div id="status"></div></form>
+<div class="preview card"><img id="preview" alt="preview"><div id="empty">Upload an image to preview it.</div></div></section>
+<section id="results" class="hidden"><h2>Pipeline Outputs</h2><div class="image-grid" id="imageGrid"></div>
+<div class="metrics" id="metricCards"></div><p class="note" id="metricNote"></p></section>
+{% endblock %}
