@@ -1,59 +1,39 @@
-# Image Processing Lab — Vercel Ready
+# 🧪 Image Processing Practical Lab
 
-## What was fixed
-- Frontend files are at the repository root, so Vercel does not look in the wrong folder and return `404 NOT_FOUND`.
-- Added `vercel.json` for a clean static deployment.
-- Removed the hard-coded `localhost:8080` dependency from the frontend.
-- The image-processing experiments remain fully browser-side and work from the public Vercel URL.
-- Backend logging is optional. If the backend is not deployed, the visual lab still works.
-- Backend CORS can now be configured with `CORS_ORIGIN`.
-- Database schema no longer tries to create a database while connected to one.
+A web-based **Image Processing Laboratory** where students can perform and visualize various Digital Image Processing practicals through an interactive interface.
 
-## IMPORTANT: Vercel + Spring Boot
-Vercel is being used here for the **frontend/static website**. The Java Spring Boot + PostgreSQL backend should be hosted separately (for example on Render, Railway, or another Java host).
+## 🔬 Practicals
 
-### Fastest way to get your public link
-1. Push this folder to GitHub.
-2. In Vercel, click **Add New → Project**.
-3. Import the GitHub repository.
-4. Framework Preset: **Other** (or let Vercel detect it as static).
-5. Root Directory: **`.`**.
-6. Build Command: leave empty.
-7. Output Directory: leave empty.
-8. Click **Deploy**.
-9. Open the generated `https://....vercel.app` URL.
+| Tab | Topic | Operations |
+|---|---|---|
+| 1 | Formats & Arithmetic/Bitwise | Grayscale, Negative, Sepia, Brightness, Blending, Bitwise, Bit-Plane |
+| 2 | Geometric Transformations | Translation, Rotation, Scaling, Shearing, Reflection, Cropping |
+| 3 | Spatial Enhancement | Histogram Equalization, Contrast, Sharpening, Thresholding, Otsu |
+| 4 | Spatial Filtering | Mean, Gaussian, Median, Bilateral |
+| 5 | Image Inpainting | Scratch/Crack Removal, Telea, Navier-Stokes |
+| 6 | Lossless Compression | RLE, Huffman, Entropy, Compression Metrics |
+| 7 | Morphological Operations | Erosion, Dilation, Opening, Closing, Gradient, Boundary |
+| 8 | Object Detection | NCC, SSD, Template Matching, Bounding Box, Heatmap |
+| 9 | Color Spaces | RGB, HSV, YCrCb, CIELAB |
+| 10 | Edge Detection | Sobel, Prewitt, Canny |
 
-There is no `npm install`, no Node build, and no frontend environment variable required.
+## ✨ Features
 
-## If you also want backend history/database
-Deploy `backend/` separately to a Java-capable service and PostgreSQL separately.
-Then edit the first line in `api.js`:
+- 🖼️ Image upload and processing
+- ⚙️ Adjustable parameters
+- 📊 Histogram & visualizations
+- 🔍 Intermediate processing results
+- 📈 Performance analysis
+- 🎓 Interactive practical learning
 
-`window.API_BASE = "https://YOUR-BACKEND-DOMAIN/api";`
+## 🛠️ Technologies
 
-Also set the backend environment variable:
+**HTML • CSS • JavaScript • Image Processing Algorithms**
 
-`CORS_ORIGIN=https://YOUR-PROJECT.vercel.app`
+## 🚀 Run
 
-For the database, set:
-- `SPRING_DATASOURCE_URL=jdbc:postgresql://HOST:PORT/DATABASE`
-- `DB_USERNAME=...`
-- `DB_PASSWORD=...`
+Clone the repository and open `index.html` in a browser or use **VS Code Live Server**.
 
-The backend already listens on `${PORT:8080}` for hosts that provide a PORT variable.
+## 🎯 Purpose
 
-## Local full-stack run
-From this folder:
-- Frontend: open `index.html` with VS Code Live Server.
-- Backend: `cd backend` then `mvn spring-boot:run`.
-- Database: PostgreSQL database `image_processing_lab`.
-
-## Vercel 404 troubleshooting
-If Vercel still shows `404 NOT_FOUND`, the usual cause is the wrong Root Directory. It must point to the folder containing:
-- `index.html`
-- `style.css`
-- `app.js`
-- `api.js`
-- `vercel.json`
-
-In this package, that is the repository root (`.`).
+A simple and interactive platform to **learn, perform, and visualize Image Processing practicals in one place.**
